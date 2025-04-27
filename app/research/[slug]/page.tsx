@@ -12,10 +12,10 @@ export async function generateStaticParams() {
   }));
 }
 
-// Dynamic Route Page Component
+// Dynamic Route Page Component - ENSURE PROP SIGNATURE IS CORRECT
 export default async function ResearchDetailPage({ params }: { params: { slug: string } }) {
-  // Access params directly - the type definition expects the resolved object, not a Promise
-  const { slug } = params; // <--- CORRECTED LINE (Removed await)
+  // Access params directly - the type definition expects the resolved object
+  const { slug } = params; // <--- Access params directly
 
   // Find the item data based on the slug
   const itemData = researchItems.find(item => item.slug === slug);
