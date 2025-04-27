@@ -15,8 +15,8 @@ export async function generateStaticParams() {
 
 // Dynamic Route Page Component
 // Correctly type the params object directly
-export default function ResearchDetailPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default async function ResearchDetailPage({ params }: { params: { slug: string } }) {
+  const { slug } = await params;
 
   // Find the item data based on the slug
   const itemData = researchItems.find(item => item.slug === slug);

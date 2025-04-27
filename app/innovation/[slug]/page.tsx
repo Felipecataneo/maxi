@@ -15,8 +15,8 @@ export async function generateStaticParams() {
 
 // Dynamic Route Page Component
 // Correctly type the params object directly
-export default function InnovationDetailPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default async function InnovationDetailPage({ params }: { params: { slug: string } }) {
+  const { slug } = await params;
 
   // Find the item data based on the slug in innovationItems
   const itemData = innovationItems.find(item => item.slug === slug);
