@@ -12,8 +12,8 @@ export async function generateStaticParams() {
   }));
 }
 
-// Dynamic Route Page Component - ENSURE PROP SIGNATURE IS CORRECT
-export default async function ResearchDetailPage({ params }: { params: { slug: string } }) {
+// Dynamic Route Page Component - Fixed prop signature to match Next.js App Router requirements
+export default function ResearchDetailPage({ params }: { params: { slug: string } }) {
   // Access params directly - the type definition expects the resolved object
   const { slug } = params; // <--- Access params directly
 
