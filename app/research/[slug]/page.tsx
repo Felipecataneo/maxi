@@ -12,15 +12,14 @@ export async function generateStaticParams() {
   }));
 }
 
-// Dynamic Route Page Component - Using the correct type signature for App Router pages
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
+// Dynamic Route Page Component using a more explicit type annotation
+// Use legacy type for compatibility with various Next.js versions
+type PageParams = {
+  slug: string;
+};
 
-export default function ResearchDetailPage({ params }: PageProps) {
-  const { slug } = params;
+export default function ResearchDetailPage(props: { params: PageParams }) {
+  const { slug } = props.params;
 
   // Find the item data based on the slug
   const itemData = researchItems.find(item => item.slug === slug);
