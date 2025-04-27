@@ -16,7 +16,7 @@ export default function ContactMap() {
         <div className="text-muted-foreground mb-8 text-base md:text-lg leading-relaxed"> {/* Use muted-foreground, leading-relaxed */}
           <p>R. Teodoro Sampaio, 255 - Pinheiros, São Paulo - SP, 05405-000, Brasil</p>
           <p className="mt-2">daniilomelo@maxiinstitute.br</p>
-          <p className="mt-2">+55 (11) 99999-9999</p>
+          <p className="mt-2">+55 (11) 93070-6287</p>
         </div>
       </div>
       {/* Map iframe container */}
