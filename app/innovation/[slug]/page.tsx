@@ -2,6 +2,7 @@
 import { notFound } from 'next/navigation';
 import ContentDetailSection from "@/components/ContentDetailSection"; // Import the reusable content section component
 import { innovationItems, getAllInnovationSlugs } from "@/lib/innovationData"; // Import data and helper
+// Removed: import { PageProps } from 'next'; // No longer needed
 
 // Optional: Generate static params for SSG
 // This tells Next.js which [slug] pages to pre-render at build time
@@ -12,14 +13,10 @@ export async function generateStaticParams() {
   }));
 }
 
-// Dynamic Route Page Component using a more explicit type annotation
-// Use legacy type for compatibility with various Next.js versions
-type PageParams = {
-  slug: string;
-};
-
-export default function InnovationDetailPage(props: { params: PageParams }) {
-  const { slug } = props.params;
+// Dynamic Route Page Component
+// Correctly type the params object directly
+export default function InnovationDetailPage({ params }: { params: { slug: string } }) {
+  const { slug } = params;
 
   // Find the item data based on the slug in innovationItems
   const itemData = innovationItems.find(item => item.slug === slug);
