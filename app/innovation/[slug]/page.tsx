@@ -12,10 +12,15 @@ export async function generateStaticParams() {
   }));
 }
 
-// Dynamic Route Page Component - Fixed prop signature to match Next.js App Router requirements
-export default function InnovationDetailPage({ params }: { params: { slug: string } }) {
-  // Access params directly - the type definition expects the resolved object
-  const { slug } = params; // <--- Access params directly
+// Dynamic Route Page Component - Using the correct type signature for App Router pages
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export default function InnovationDetailPage({ params }: PageProps) {
+  const { slug } = params;
 
   // Find the item data based on the slug in innovationItems
   const itemData = innovationItems.find(item => item.slug === slug);

@@ -12,10 +12,15 @@ export async function generateStaticParams() {
   }));
 }
 
-// Dynamic Route Page Component - Fixed prop signature to match Next.js App Router requirements
-export default function ResearchDetailPage({ params }: { params: { slug: string } }) {
-  // Access params directly - the type definition expects the resolved object
-  const { slug } = params; // <--- Access params directly
+// Dynamic Route Page Component - Using the correct type signature for App Router pages
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export default function ResearchDetailPage({ params }: PageProps) {
+  const { slug } = params;
 
   // Find the item data based on the slug
   const itemData = researchItems.find(item => item.slug === slug);
@@ -24,10 +29,6 @@ export default function ResearchDetailPage({ params }: { params: { slug: string 
   if (!itemData) {
     notFound(); // Renders the Next.js not-found page (or app/not-found.tsx if you have one)
   }
-
-  // Assuming you want the main "PESQUISA E DESENVOLVIMENTO" title on this page too
-  // It's more consistent with the reference site's section titles.
-  // Let's wrap the reusable section component.
 
   return (
     <div className="bg-section-background"> {/* Use section background variable */}
