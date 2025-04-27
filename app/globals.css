@@ -11,6 +11,8 @@
   /* Keeping them if you still want to use them via Tailwind theme */
   --font-sans: var(--font-geist-sans); /* Or specify your main sans font */
   --font-mono: var(--font-geist-mono); /* Or specify your mono font */
+  --font-serif: var(--font-georgia); /* Add a serif variable if needed, or apply directly below */
+
 
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -47,7 +49,9 @@
   --radius-xl: calc(var(--radius) + 4px);
 
   /* Add a variable for the light background used in sections */
-  --color-section-background: oklch(0.968 0.007 247.896); /* Using a light grey/blue from muted */
+  /* Use oklch(0.968 0.007 247.896) from muted */
+  --color-section-background: var(--muted);
+  --color-accent-blue: oklch(0.55 0.15 260); /* Example accent blue */
 }
 
 :root {
@@ -59,18 +63,18 @@
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --primary: oklch(0.208 0.042 265.755); /* Dark blue/greyish */
+  --primary-foreground: oklch(0.984 0.003 247.858); /* Very light grey */
+  --secondary: oklch(0.968 0.007 247.896); /* Light grey */
+  --secondary-foreground: oklch(0.208 0.042 265.755); /* Dark blue/greyish */
   --muted: oklch(0.968 0.007 247.896); /* Light grey */
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --muted-foreground: oklch(0.554 0.046 257.417); /* Medium grey */
+  --accent: oklch(0.968 0.007 247.896); /* Light grey */
+  --accent-foreground: oklch(0.208 0.042 265.755); /* Dark blue/greyish */
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.929 0.013 255.508); /* Very light grey */
+  --input: oklch(0.929 0.013 255.508); /* Very light grey */
+  --ring: oklch(0.704 0.04 256.788); /* Medium grey */
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -86,6 +90,10 @@
   --sidebar-ring: oklch(0.704 0.04 256.788);
 
   --section-background: var(--muted); /* Use the light grey variable */
+  --accent-blue: oklch(0.55 0.15 260); /* Example accent blue */
+
+  /* Define the navbar height CSS variable here */
+  --navbar-height: 64px; /* 4rem (matches h-16) */
 }
 
 .dark {
@@ -123,6 +131,7 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 
   --section-background: var(--secondary); /* Use a different dark grey variable for sections in dark mode */
+  --accent-blue: oklch(0.75 0.15 260); /* Adjust accent blue for dark mode */
 }
 
 @layer base {
@@ -131,7 +140,12 @@
   }
   body {
     /* Set a default background color, sections can override */
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans; /* Ensure font-sans is applied */
+  }
+
+  /* Apply serif font to main headings */
+  h1, h2, h3 {
+    @apply font-serif; /* Apply the serif font */
   }
 }
 
@@ -139,7 +153,17 @@
 /*
 @layer utilities {
   .font-serif {
-    font-family: 'Georgia', serif; // Or any serif font you prefer
+    font-family: var(--font-georgia, Georgia, serif); // Use variable if defined, fallback to Georgia
   }
 }
 */
+
+/* Custom utility class for section background */
+@layer utilities {
+    .bg-section-background {
+        background-color: var(--section-background);
+    }
+    .text-accent-blue {
+      color: var(--accent-blue);
+    }
+}

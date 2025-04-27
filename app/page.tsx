@@ -1,14 +1,12 @@
 import Hero from "@/components/Hero";
-import ResearchDevelopment from "@/components/ResearchDevelopment"; // New component
-import InnovationEntrepreneurship from "@/components/InnovationEntrepreneurship"; // New component
-import ContactMap from "@/components/ContactMap"; // New component
- // Modified component
-
-// Removed imports for Features, About, Methodology, CTA
+import ResearchDevelopment from "@/components/ResearchDevelopment";
+import InnovationEntrepreneurship from "@/components/InnovationEntrepreneurship";
+import ContactMap from "@/components/ContactMap";
 
 export default function Home() {
   return (
     <>
+      {/* Each section component will now be responsible for its own background and padding */}
       <Hero />
       <ResearchDevelopment />
       <InnovationEntrepreneurship />

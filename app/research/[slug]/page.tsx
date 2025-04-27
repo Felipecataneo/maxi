@@ -1,6 +1,6 @@
 // app/research/[slug]/page.tsx
 import { notFound } from 'next/navigation';
-import ResearchContentSection from "@/components/ContentDetailSection";
+import ContentDetailSection from "@/components/ContentDetailSection"; // Use the common name
 import { researchItems, getAllResearchSlugs } from "@/lib/researchData"; // Import data and helper
 
 // Optional: Generate static params for SSG
@@ -13,10 +13,9 @@ export async function generateStaticParams() {
 }
 
 // Dynamic Route Page Component
-// Make the component function 'async' and await 'params'
 export default async function ResearchDetailPage({ params }: { params: { slug: string } }) {
   // Await params before destructuring to avoid the warning/error
-  const { slug } = await params;
+  const { slug } = await params; // <--- CORRECTED LINE
 
   // Find the item data based on the slug
   const itemData = researchItems.find(item => item.slug === slug);
@@ -31,15 +30,18 @@ export default async function ResearchDetailPage({ params }: { params: { slug: s
   // Let's wrap the reusable section component.
 
   return (
-    <div className="bg-gray-50"> {/* Background matches the content section */}
+    <div className="bg-section-background"> {/* Use section background variable */}
         <div className="container mx-auto px-4 py-16 md:py-24"> {/* Add padding to the container */}
-            <div className="text-center mb-12">
+            <div className="text-center mb-12 animate-fade-in"> {/* Add animation */}
                 {/* Main Section Title - consistent with homepage */}
-                {/* Using h1 for the main title of the page */}
-                <h1 className="text-3xl md:text-4xl font-serif font-normal text-gray-900">PESQUISA E DESENVOLVIMENTO</h1>
+                {/* Apply font-serif from base layer, just need text color and size */}
+                <h1 className="text-3xl md:text-4xl text-gray-900">PESQUISA E DESENVOLVIMENTO</h1>
             </div>
             {/* Render the reusable content section with the found item data */}
-            <ResearchContentSection itemData={itemData} />
+            {/* Add animation delay to the content section */}
+            <div className="animate-fade-in delay-100">
+              <ContentDetailSection itemData={itemData} />
+            </div>
         </div>
     </div>
   );

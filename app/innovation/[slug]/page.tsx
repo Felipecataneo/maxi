@@ -13,10 +13,9 @@ export async function generateStaticParams() {
 }
 
 // Dynamic Route Page Component
-// Make the component function 'async' and await 'params'
 export default async function InnovationDetailPage({ params }: { params: { slug: string } }) {
-  // Await params before destructuring
-  const { slug } = await params;
+  // Await params before destructuring to avoid the warning/error
+  const { slug } = await params; // <--- CORRECTED LINE
 
   // Find the item data based on the slug in innovationItems
   const itemData = innovationItems.find(item => item.slug === slug);
@@ -28,14 +27,18 @@ export default async function InnovationDetailPage({ params }: { params: { slug:
 
   // Render the page structure similar to the Research detail page
   return (
-    <div className="bg-gray-50"> {/* Background matches the content section */}
+    <div className="bg-section-background"> {/* Use section background variable */}
         <div className="container mx-auto px-4 py-16 md:py-24"> {/* Add padding to the container */}
-            <div className="text-center mb-12">
+            <div className="text-center mb-12 animate-fade-in"> {/* Add animation */}
                 {/* Main Section Title for Innovation & Entrepreneurship */}
-                <h1 className="text-3xl md:text-4xl font-serif font-normal text-gray-900">INOVAÇÃO E EMPREENDEDORISMO</h1>
+                {/* Apply font-serif from base layer, just need text color and size */}
+                <h1 className="text-3xl md:text-4xl text-gray-900">INOVAÇÃO E EMPREENDEDORISMO</h1>
             </div>
             {/* Render the reusable content section with the found innovation item data */}
-            <ContentDetailSection itemData={itemData} />
+            {/* Add animation delay to the content section */}
+            <div className="animate-fade-in delay-100">
+               <ContentDetailSection itemData={itemData} />
+            </div>
         </div>
     </div>
   );
