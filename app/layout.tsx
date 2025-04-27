@@ -15,9 +15,12 @@ import { ReactNode } from "react";
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} flex flex-col min-h-screen`}>
         <Navbar />
-        <main>{children}</main>
+        {/* Add padding-top to the main content equal to the navbar height */}
+        <main className="flex-grow pt-16"> {/* Added pt-16. Adjust if navbar height changes significantly. */}
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

@@ -1,37 +1,40 @@
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+// Removed Button import, as no buttons are in this Hero section now
 
 export default function Hero() {
   return (
-    <section className="pt-24 pb-16 md:pt-32 md:pb-24">
+    // Section with standard padding, light background (implicitly from body/layout)
+    // and a container with flex layout for side-by-side content
+    <section className="py-16 md:py-24"> {/* Standard vertical padding */}
       <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-center">
-          <div className="lg:w-1/2 lg:pr-12">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-              Empowering Organizations with AI-Powered Customer Intelligence
+        {/* Flex container for side-by-side layout on large screens, stacked on small */}
+        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 md:gap-16"> {/* Added gap for spacing */}
+
+          {/* Text Content Area (left on large screens) */}
+          <div className="lg:w-1/2 text-center lg:text-left"> {/* Text alignment adjusted */}
+            {/* Apply font-serif, color, size, and leading */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-normal leading-tight text-gray-900">
+              BEM-VINDO AO <br/> INSTITUTO <br/> MAXIMIZE CIÊNCIA, <br/> TECNOLOGIA E <br/> INOVAÇÃO
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 mb-8">
-              We help organizations leverage AI to improve customer experiences and unlock powerful insights
-              from customer data.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-lg py-6 px-8">
-                Get Started
-              </Button>
-              <Button variant="outline" className="text-lg py-6 px-8">
-                Learn More
-              </Button>
-            </div>
+            {/* Removed paragraph and buttons */}
           </div>
-          <div className="lg:w-1/2 mt-12 lg:mt-0">
+
+          {/* Image Area (right on large screens) */}
+          <div className="lg:w-1/2">
+            {/* The Image component */}
             <Image
-              src="/hero-image.png"
-              alt="AI Customer Intelligence"
-              width={600}
-              height={500}
-              className="rounded-lg shadow-xl"
+              src="/hero.png" // Using the image path you provided
+              alt="Meeting Image" // Descriptive alt text
+              width={800} // Provide dimensions for optimization
+              height={500} // Provide dimensions for optimization
+              // Use layout="responsive" is deprecated in Next.js 13+, use fill or sizing classes
+              // For side-by-side, setting max-width and h-auto is common.
+              // The original image dimensions might be useful here to maintain aspect ratio.
+              // Let's use width/height and add responsive classes.
+              className="w-full h-auto rounded-lg shadow-xl" // Ensure responsiveness and add styles
             />
           </div>
+
         </div>
       </div>
     </section>
