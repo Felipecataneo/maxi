@@ -1,5 +1,3 @@
-/* app/globals.css */
-
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -53,10 +51,6 @@
   --color-accent-blue: oklch(0.55 0.15 260);
 
   --navbar-height: 64px; /* 4rem (matches h-16) */
-
-   /* Add the new card stack color variables to inline theme */
-   --color-card-secondary-stack: var(--card-secondary-stack);
-   --color-card-tertiary-stack: var(--card-tertiary-stack);
 }
 
 :root {
@@ -97,11 +91,6 @@
   /* UPDATED: Define section-background explicitly */
   --section-background: oklch(0.98 0.005 265); /* Very light cool grey */
   --accent-blue: oklch(0.55 0.15 260); /* Keep accent blue */
-
-  /* Add the new card stack color variables for light mode */
-  --card-secondary-stack: oklch(0.96 0.008 260); /* Slightly cooler/darker white */
-  --card-tertiary-stack: oklch(0.94 0.012 265); /* Even darker/cooler */
-  /* You can experiment with these oklch values */
 }
 
 .dark {
@@ -141,11 +130,6 @@
   /* UPDATED: Define section-background explicitly for dark mode */
   --section-background: oklch(0.25 0.03 270); /* Slightly darker cool grey */
   --accent-blue: oklch(0.75 0.15 260); /* Keep accent blue */
-
-  /* Add the new card stack color variables for dark mode */
-   --card-secondary-stack: oklch(0.25 0.04 270); /* Slightly lighter/cooler dark */
-   --card-tertiary-stack: oklch(0.3 0.05 275); /* Even lighter/cooler */
-   /* You can experiment with these oklch values */
 }
 
 @layer base {
@@ -165,42 +149,4 @@
     .text-accent-blue {
       color: var(--accent-blue);
     }
-    .bg-card-secondary-stack {
-      background-color: var(--card-secondary-stack);
-    }
-    .bg-card-tertiary-stack {
-        background-color: var(--card-tertiary-stack);
-    }
 }
-
-/* --- Custom Styles for Mobile Card Stack --- */
-@layer components {
-
-
-    .card-stack-slider {
-        /* Container for the absolute positioned cards */
-        position: relative;
-    }
-
-    .card-stack-card {
-        /* Individual card wrapper (Link element) */
-        position: absolute;
-        /* top, left, x transforms, width, maxWidth, y, scale, z-index, pointer-events controlled by GSAP/inline style */
-        @apply w-full h-full; /* Ensure the link fills the absolute container */
-        /* Ensure background color is visible below the image */
-         background-color: var(--card); /* Default background for the Link wrapper */
-         border-radius: 0.5rem; /* Match card border-radius or slightly less */
-         overflow: hidden; /* Clip content to rounded corners */
-    }
-
-    /* Ensure SectionCard itself adapts within the absolute container */
-    /* You might need to adjust this selector depending on the exact DOM structure inside SectionCard */
-    .card-stack-card > div { /* Target the main div inside the Link */
-         @apply w-full h-full;
-         /* Remove any default background from the inner SectionCard div
-            if it's set there instead of the wrapper */
-          background-color: transparent !important;
-    }
-}
-
-/* Keep other @layer styles */
