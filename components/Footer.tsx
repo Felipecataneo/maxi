@@ -29,7 +29,7 @@ export default function Footer() {
 
         {/* Copyright */}
         {/* No border top in this simplified footer */}
-        <p>©2025 por Instituto Maximize Ciência, Tecnologia e Inovação. Orgulhosamente criado por Felipe Cataneo</p> {/* Exact text from reference */}
+        <p>©2025 por Instituto Maximize Ciência, Tecnologia e Inovação. </p> {/* Exact text from reference */}
 
       </div>
     </footer>

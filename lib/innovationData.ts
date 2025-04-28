@@ -4,7 +4,7 @@ export const innovationItems = [
   {
     slug: "desenvolvimento-solucoes-tecnologicas",
     title: "Desenvolvimento de soluções tecnológicas para o futuro da ciência e da sociedade",
-    imageSrc: "/innovation1.png", // Use path from public/images
+    imageSrc: "/innovation1.JPG", // Use path from public/images
     detailedText: `
       No Instituto Maximize, estamos na vanguarda da criação de soluções tecnológicas que não apenas respondem aos desafios atuais,
       mas também pavimentam o caminho para um futuro mais justo e sustentável.
@@ -18,7 +18,7 @@ export const innovationItems = [
   {
     slug: "consultoria-empreendedorismo-inovacao",
     title: "Consultoria em Empreendedorismo e Inovação",
-    imageSrc: "/innovation2.png", // Use path from public/images
+    imageSrc: "/innovation2.JPG", // Use path from public/images
     detailedText: `
       Apoiar o nascimento e o crescimento de iniciativas inovadoras é parte fundamental de nossa missão. Oferecemos consultoria
       especializada para empreendedores, startups e empresas que buscam estruturar seus projetos de inovação e navegar o ecossistema
@@ -32,7 +32,7 @@ export const innovationItems = [
   {
     slug: "construcao-lideranca-ecossistemas-pd-i",
     title: "Construção e Liderança de Ecossistemas de Empreendedorismo e P&D&I",
-    imageSrc: "/innovation3.png", // Use path from public/images
+    imageSrc: "/innovation3.JPG", // Use path from public/images
     detailedText: `
       Ecossistemas vibrantes são o berço da inovação disruptiva. O Instituto Maximize desempenha um papel ativo na construção
       e liderança de ecossistemas de empreendedorismo e P&D&I, articulando diferentes atores como governo, academia, indústria,

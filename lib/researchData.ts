@@ -4,7 +4,7 @@ export const researchItems = [
   {
     slug: "tecnologias-habilitadoras-industria",
     title: "Tecnologias habilitadoras aplicadas à Indústria e Empresas",
-    imageSrc: "/research1.png", // Use path from public/images
+    imageSrc: "/research1.JPG", // Use path from public/images
     detailedText: `
       Em um cenário global de constante evolução tecnológica, o Instituto Maximize se dedica à pesquisa e aplicação de
       tecnologias habilitadoras que impulsionam a transformação da indústria e das empresas. Focamos em áreas como
@@ -19,7 +19,7 @@ export const researchItems = [
   {
     slug: "inovacao-aberta-transformacao-digital",
     title: "Inovação Aberta e Transformação Digital",
-    imageSrc: "/research2.png", // Use path from public/images
+    imageSrc: "/research2.JPG", // Use path from public/images
     detailedText: `
       Acreditamos que a inovação floresce através da colaboração e da abertura. O Instituto Maximize atua como um hub
       conectando empresas, academia e startups para fomentar a inovação aberta e a cocriação de valor.
@@ -33,7 +33,7 @@ export const researchItems = [
   {
     slug: "lideranca-colaboracao-projetos-pesquisa",
     title: "Liderança e colaboração em projetos de Pesquisa e Desenvolvimento",
-    imageSrc: "/research3.png", // Use path from public/images
+    imageSrc: "/research3.JPG", // Use path from public/images
     detailedText: `
       Projetos de P&D são complexos e exigem uma liderança eficaz e uma colaboração fluida entre diferentes atores e disciplinas.
       No Instituto Maximize, pesquisamos e aplicamos as melhores práticas em gestão de projetos de pesquisa, com foco em ambientes

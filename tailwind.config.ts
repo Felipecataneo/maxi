@@ -87,7 +87,11 @@ const config: Config = {
       }
     },
   },
-   plugins: [], // Mantenha seus plugins aqui
-};
+  plugins: [
+    require('@tailwindcss/aspect-ratio'), // Apenas se Tailwind < 3.3
+    require('tailwind-scrollbar-hide'), // Para esconder a scrollbar
+    // ... outros plugins ...
+  ],
+}
 
 export default config;
