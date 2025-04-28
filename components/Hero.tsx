@@ -1,57 +1,79 @@
 // components/Hero.tsx
 "use client"; // Adicione esta linha no topo
 
-import Image from "next/image";
-import { motion } from "framer-motion"; // Import framer-motion
+import { useRef } from 'react'; // Keep useRef for the video element
+// Removed: import Image from "next/image"; // No longer needed
+import { motion } from "framer-motion"; // Keep framer-motion for text animation
 
 export default function Hero() {
+  // Create a ref for the video element (optional, mainly useful for advanced control if needed,
+  // but can be omitted if only using standard video attributes like autoplay/loop/muted)
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Removed useEffect hook for scroll control
+
   return (
+    // Removed sectionRef from here
     <section className="relative h-screen overflow-hidden">
-      {/* Background Image - Panoramic City View */}
-      {/* Certifique-se de que a imagem panoramic.jpg esteja no diretório /public */}
+      {/* Background Video Container */}
+      {/* Certifique-se de que o vídeo panoramic.mov esteja no diretório /public */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/panoramic.jpg" // Substitua pelo caminho correto da imagem panorâmica
-          alt="Vista panorâmica da cidade"
-          fill // Use fill para cobrir o container pai
-          className="object-cover brightness-75" // object-cover garante que a imagem cubra o container mantendo a proporção
-          priority // Importante para a imagem principal da página para LCP
-        />
-        {/* Overlay para melhorar contraste do texto sobre a imagem */}
+        {/* Use the video element */}
+        <video
+          ref={videoRef} // Ref is still useful if you ever need programmatic control later
+          src="/panoramic.mov" // !! MAKE SURE THIS FILE EXISTS IN YOUR PUBLIC DIRECTORY !!
+          muted // Essential for autoplay/manual control in many browsers
+          loop // <--- Add loop attribute
+          autoPlay // <--- Add autoPlay attribute
+          playsInline // Recommended for mobile playback
+          preload="auto" // Helps load metadata and potentially some video data
+          className="w-full h-full object-cover brightness-75" // object-cover ensures video covers container
+          // Poster attribute is good for fallback image if video fails to load or is not supported
+          // poster="/panoramic.jpg" // Optional: Add a fallback image path
+        >
+          {/* Optional: Add source elements for different formats for broader compatibility */}
+          {/* <source src="/panoramic.mp4" type="video/mp4" /> */}
+          Your browser does not support the video tag. {/* Fallback text */}
+        </video>
+        {/* Overlay para melhorar contraste do texto sobre o vídeo */}
         <div className="absolute inset-0 bg-black/50"></div> {/* Aumentei um pouco a opacidade do overlay */}
       </div>
 
       {/* Conteúdo do Hero */}
       <div className="container mx-auto px-4 h-full flex items-center relative z-10">
         {/* Container principal do texto e botões */}
-        <div className="w-full md:max-w-3xl text-white"> {/* Adicionado text-white aqui para afetar todo o conteúdo */}
+        <div className="w-full md:max-w-3xl text-white"> {/* Add text-white here to make sure surrounding text is white */}
           {/* Animação de entrada usando framer-motion */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+          {/* REPLACED: The entire h1 structure */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }} // Adicionado easeOut para suavizar
+            transition={{ duration: 0.9, delay: 0.2, type: 'spring' }}
+            className="text-4xl sm:text-5xl lg:text-7xl font-heading font-extrabold leading-tight tracking-tight mb-8"
           >
-            {/* Título */}
-            {/* Use font-sans que aponta para Inter via vars globais */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight leading-tight mb-8 font-heading">
-              BEM-VINDO AO <br/> INSTITUTO <br/> MAXIMIZE CIÊNCIA, <br/> TECNOLOGIA E <br/> INOVAÇÃO
-            </h1>
+            Bem-vindo ao <br />
+            {/* CHANGED: Gradient colors to sunset tones (orange, red, purple) */}
+            <span className="bg-gradient-to-r from-orange-400 via-red-500 to-purple-600 bg-clip-text text-transparent drop-shadow-xl">
+              Instituto Maximize
+            </span>
+            <br />
+            <span className="font-normal text-white/80">
+              Ciência, Tecnologia & Inovação
+            </span>
+          </motion.h1>
 
-            {/* Botões de CTA */}
-            <div className="flex flex-col sm:flex-row gap-4 mt-8">
-              {/* Botão 1: Conheça nossos serviços -> Link para Contato */}
-              <motion.a
-                href="#contact" // Link para a seção de Contato (se existir)
-                className="px-8 py-3 bg-white text-gray-900 font-medium rounded-md hover:bg-gray-200 transition-colors duration-300 text-center" // Use gray-900 ou foreground para cor do texto
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Entre em contato
-              </motion.a>
-
-
-            </div>
-          </motion.div>
+          {/* Botões de CTA */}
+          <div className="flex flex-col sm:flex-row gap-4 mt-8">
+            {/* Botão 1: Conheça nossos serviços -> Link para Contato */}
+            <motion.a
+              href="#contact" // Link para a seção de Contato (se existir)
+              className="px-8 py-3 bg-white text-gray-900 font-medium rounded-md hover:bg-gray-200 transition-colors duration-300 text-center" // Use gray-900 ou foreground para cor do texto
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Entre em contato
+            </motion.a>
+          </div>
         </div>
       </div>
 

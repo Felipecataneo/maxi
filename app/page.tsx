@@ -6,11 +6,24 @@ import ContactMap from "@/components/ContactMap";
 export default function Home() {
   return (
     <>
-      {/* Each section component will now be responsible for its own background and padding */}
+      {/* Hero has its own background */}
       <Hero />
-      <ResearchDevelopment />
-      <InnovationEntrepreneurship />
-      <ContactMap />
+
+      {/* Section 1: Research & Development - Use section background */}
+      <div className="bg-section-background">
+        <ResearchDevelopment />
+      </div>
+
+      {/* Section 2: Innovation & Entrepreneurship - Use main background */}
+      <div className="bg-background">
+        <InnovationEntrepreneurship />
+      </div>
+
+      {/* Section 3: Contact & Map - Use section background */}
+      <div className="bg-section-background">
+        <ContactMap />
+      </div>
+
       {/* Footer is included in layout.tsx */}
     </>
   );

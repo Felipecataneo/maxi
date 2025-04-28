@@ -46,7 +46,8 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  --color-section-background: var(--muted);
+  /* UPDATED: Define section-background explicitly with a subtle tint */
+  --color-section-background: oklch(0.98 0.005 265); /* Very light cool grey */
   --color-accent-blue: oklch(0.55 0.15 260);
 
   --navbar-height: 64px; /* 4rem (matches h-16) */
@@ -87,8 +88,9 @@
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
 
-  --section-background: var(--muted);
-  --accent-blue: oklch(0.55 0.15 260);
+  /* UPDATED: Define section-background explicitly */
+  --section-background: oklch(0.98 0.005 265); /* Very light cool grey */
+  --accent-blue: oklch(0.55 0.15 260); /* Keep accent blue */
 }
 
 .dark {
@@ -125,8 +127,9 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
 
-  --section-background: var(--secondary);
-  --accent-blue: oklch(0.75 0.15 260);
+  /* UPDATED: Define section-background explicitly for dark mode */
+  --section-background: oklch(0.25 0.03 270); /* Slightly darker cool grey */
+  --accent-blue: oklch(0.75 0.15 260); /* Keep accent blue */
 }
 
 @layer base {
@@ -136,11 +139,6 @@
   body {
     @apply bg-background text-foreground font-sans;
   }
-
-  /* Remova esta regra: */
-  /* h1, h2, h3 {
-    @apply font-serif;
-  } */
 }
 
 /* Custom utility class for section background */
