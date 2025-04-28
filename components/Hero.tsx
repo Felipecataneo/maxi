@@ -16,24 +16,29 @@ export default function Hero() {
     // Removed sectionRef from here
     <section className="relative h-screen overflow-hidden">
       {/* Background Video Container */}
-      {/* Certifique-se de que o vídeo panoramic.mov esteja no diretório /public */}
+      {/* Certifique-se de que AMBOS panoramic.mov e panoramic.mp4 estejam no diretório /public */}
       <div className="absolute inset-0 z-0">
         {/* Use the video element */}
         <video
           ref={videoRef} // Ref is still useful if you ever need programmatic control later
-          src="/panoramic.mov" // !! MAKE SURE THIS FILE EXISTS IN YOUR PUBLIC DIRECTORY !!
+          // REMOVED: src attribute from the <video> tag itself
           muted // Essential for autoplay/manual control in many browsers
-          loop // <--- Add loop attribute
-          autoPlay // <--- Add autoPlay attribute
+          loop // Add loop attribute
+          autoPlay // Add autoPlay attribute
           playsInline // Recommended for mobile playback
           preload="auto" // Helps load metadata and potentially some video data
           className="w-full h-full object-cover brightness-75" // object-cover ensures video covers container
           // Poster attribute is good for fallback image if video fails to load or is not supported
           // poster="/panoramic.jpg" // Optional: Add a fallback image path
         >
-          {/* Optional: Add source elements for different formats for broader compatibility */}
-          {/* <source src="/panoramic.mp4" type="video/mp4" /> */}
-          Your browser does not support the video tag. {/* Fallback text */}
+          {/* ADDED: Multiple source elements */}
+          {/* Provide MP4 first for broadest compatibility */}
+          <source src="/panoramic.mp4" type="video/mp4" />
+          {/* Provide MOV as a fallback for browsers that might support it better (like Safari) */}
+          <source src="/panoramic.mov" type="video/quicktime" /> {/* Correct MIME type for MOV */}
+
+          {/* Fallback text for browsers that support neither */}
+          Your browser does not support the video tag.
         </video>
         {/* Overlay para melhorar contraste do texto sobre o vídeo */}
         <div className="absolute inset-0 bg-black/50"></div> {/* Aumentei um pouco a opacidade do overlay */}
@@ -44,7 +49,6 @@ export default function Hero() {
         {/* Container principal do texto e botões */}
         <div className="w-full md:max-w-3xl text-white"> {/* Add text-white here to make sure surrounding text is white */}
           {/* Animação de entrada usando framer-motion */}
-          {/* REPLACED: The entire h1 structure */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
