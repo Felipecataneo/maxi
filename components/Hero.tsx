@@ -1,48 +1,84 @@
+// components/Hero.tsx
+"use client"; // Adicione esta linha no topo
+
 import Image from "next/image";
-// Removed Button import, as no buttons are in this Hero section now
+import { motion } from "framer-motion"; // Import framer-motion
 
 export default function Hero() {
   return (
-    // Section with standard padding, light background (implicitly from body/layout)
-    // and a container with flex layout for side-by-side content
-    <section className="relative overflow-hidden py-20 md:py-28"> {/* Added overflow-hidden, removed bg-gray-50 */}
-        {/* Optional: Add a subtle background gradient or pattern here */}
-        {/* <div className="absolute inset-0 bg-gradient-to-b from-background/50 to-transparent z-0"></div> */}
+    <section className="relative h-screen overflow-hidden">
+      {/* Background Image - Panoramic City View */}
+      {/* Certifique-se de que a imagem panoramic.jpg esteja no diretório /public */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/panoramic.jpg" // Substitua pelo caminho correto da imagem panorâmica
+          alt="Vista panorâmica da cidade"
+          fill // Use fill para cobrir o container pai
+          className="object-cover brightness-75" // object-cover garante que a imagem cubra o container mantendo a proporção
+          priority // Importante para a imagem principal da página para LCP
+        />
+        {/* Overlay para melhorar contraste do texto sobre a imagem */}
+        <div className="absolute inset-0 bg-black/50"></div> {/* Aumentei um pouco a opacidade do overlay */}
+      </div>
 
-      <div className="container mx-auto px-4 relative z-10"> {/* Added relative z-10 to keep content above potential background */}
-        {/* Flex container for side-by-side layout on large screens, stacked on small */}
-        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 md:gap-16"> {/* Added gap for spacing */}
-
-          {/* Text Content Area (left on large screens) */}
-          <div className="lg:w-1/2 text-center lg:text-left animate-slide-right"> {/* Text alignment adjusted, add animation */}
-            {/* Apply font-serif from base layer, just need text color, size and leading */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal leading-tight text-gray-900"> {/* sm:text-5xl for better intermediate size */}
+      {/* Conteúdo do Hero */}
+      <div className="container mx-auto px-4 h-full flex items-center relative z-10">
+        {/* Container principal do texto e botões */}
+        <div className="w-full md:max-w-3xl text-white"> {/* Adicionado text-white aqui para afetar todo o conteúdo */}
+          {/* Animação de entrada usando framer-motion */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }} // Adicionado easeOut para suavizar
+          >
+            {/* Título */}
+            {/* Use font-sans que aponta para Inter via vars globais */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight leading-tight mb-8 font-heading">
               BEM-VINDO AO <br/> INSTITUTO <br/> MAXIMIZE CIÊNCIA, <br/> TECNOLOGIA E <br/> INOVAÇÃO
             </h1>
-            {/* Removed paragraph and buttons */}
-          </div>
 
-          {/* Image Area (right on large screens) */}
-          <div className="lg:w-1/2 animate-slide-left delay-100"> {/* Add animation with delay */}
-            {/* The Image component */}
-            <Image
-              src="/hero.png" // Using the image path you provided
-              alt="Meeting Image" // Descriptive alt text
-              width={800} // Provide dimensions for optimization
-              height={500} // Provide dimensions for optimization
-              // Use layout="responsive" is deprecated in Next.js 13+, use fill or sizing classes
-              // For side-by-side, setting max-width and h-auto is common.
-              // The original image dimensions might be useful here to maintain aspect ratio.
-              // Let's use width/height and add responsive classes.
-              className="w-full h-auto rounded-lg shadow-xl transform transition-transform hover:scale-[1.02]" // Ensure responsiveness, add shadow, and a subtle hover effect
-            />
-             {/* Optional: Add a Lottie animation related to science, tech, or collaboration */}
-             {/* This would require installing a Lottie library (e.g., `lottie-react`) and finding a free animation JSON */}
-             {/* <div className="mt-4 text-center text-muted-foreground">Optional Lottie Animation Here</div> */}
-          </div>
+            {/* Botões de CTA */}
+            <div className="flex flex-col sm:flex-row gap-4 mt-8">
+              {/* Botão 1: Conheça nossos serviços -> Link para Contato */}
+              <motion.a
+                href="#contact" // Link para a seção de Contato (se existir)
+                className="px-8 py-3 bg-white text-gray-900 font-medium rounded-md hover:bg-gray-200 transition-colors duration-300 text-center" // Use gray-900 ou foreground para cor do texto
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Entre em contato
+              </motion.a>
 
+
+            </div>
+          </motion.div>
         </div>
       </div>
+
+      {/* Seta de scroll animada no fundo */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 flex flex-col items-center"
+        animate={{ y: [0, 10, 0] }} // Animação de sobe e desce
+        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }} // Animação contínua
+      >
+        <span className="text-white text-sm mb-2 opacity-80 font-sans">Explore</span> {/* Use font-sans */}
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="text-white"
+        >
+          <path
+            d="M12 5V19M12 19L5 12M12 19L19 12"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </motion.div>
     </section>
   );
 }

@@ -1,63 +1,59 @@
 // app/layout.tsx
 import { Inter } from "next/font/google";
-// If you want a specific serif font (like Georgia or another webfont), import it here
-// import localFont from 'next/font/local';
+// Importe a nova fonte para os títulos
+import { Outfit } from "next/font/google"; // Importe a fonte desejada (aqui, Outfit)
+
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-// import { Whatsapp } from 'lucide-react'; // Remova este import, pois vamos usar react-icons
-import { FaWhatsapp } from 'react-icons/fa'; // Importe o ícone do Font Awesome v4 via react-icons
+import { FaWhatsapp } from 'react-icons/fa'; // Mantenha o import do WhatsApp se já o adicionou
 
-const inter = Inter({ subsets: ["latin"], variable: '--font-geist-sans' }); // Using as variable
-// Example of adding a local serif font if needed
-// const georgia = localFont({ src: '../public/fonts/Georgia.woff2', variable: '--font-georgia' });
+// Configure a fonte Inter (para corpo) como variável --font-sans
+const inter = Inter({ subsets: ["latin"], variable: '--font-geist-sans' });
+
+// Configure a nova fonte para títulos (ex: Outfit) como variável --font-heading
+// Escolha os pesos que você usará para os títulos (400 normal, 500/600 semibold/bold, 700 bold)
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: '--font-heading',
+  weight: ['400', '500', '600', '700'] // Especifique os pesos necessários
+});
 
 
 export const metadata = {
-  title: "Maxi Institute | Ciência, Tecnologia e Inovação", // More descriptive title
-  description: "Instituto Maximize Ciência, Tecnologia e Inovação: Impulsionando Pesquisa, Desenvolvimento, Inovação e Empreendedorismo. Desenvolvemos soluções tecnológicas, oferecemos consultoria e construímos ecossistemas para o avanço da ciência e da sociedade.", // Description covering core areas and mission
+  title: "Maxi Institute | Ciência, Tecnologia e Inovação",
+  description: "Instituto Maximize Ciência, Tecnologia e Inovação: Impulsionando Pesquisa, Desenvolvimento, Inovação e Empreendedorismo...",
 };
 
 import { ReactNode } from "react";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  // The WhatsApp number in international format, without '+'
-  const whatsappNumber = '5511930706287'; // (11) 93070-6287
-
-  // Construct the WhatsApp Web/App URL
-  // Optional: add ?text=YourPredefinedMessage for a pre-filled message
+   // O número do WhatsApp e link (mantenha se adicionou)
+  const whatsappNumber = '5511930706287';
   const whatsappLink = `https://wa.me/${whatsappNumber}`;
-  // Example with pre-filled message:
-  // const whatsappLink = `https://wa.me/${whatsappNumber}?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es.`; // "Olá, gostaria de mais informações." URL encoded
 
   return (
-    // Apply font variables if using them
-    <html lang="en" className={`${inter.variable}`} suppressHydrationWarning>
-      {/* Ensure no whitespace/newline here! */}
-      <body className="flex flex-col min-h-screen">
+    // Aplique AMBAS as variáveis de fonte ao <html>
+    // Isso as torna disponíveis em todo o CSS e Tailwind
+    <html lang="en" className={`${inter.variable} ${outfit.variable}`} suppressHydrationWarning>
+      <body> {/* Remova a classe 'flex flex-col min-h-screen' daqui e coloque-a em uma div wrapper dentro do body, ou gerencie o layout de forma diferente se o body não for o container principal */}
         <Navbar />
-        {/* Add padding-top to the main content equal to the navbar height */}
-        {/* Use a relative padding class instead of fixed pt-16, as navbar height can vary */}
-        {/* Also, apply a max-width and center the content for better readability */}
-        <main className="flex-grow pt-[var(--navbar-height, 64px)]"> {/* Dynamically set padding from CSS variable if possible, fallback to 64px (approx h-16) */}
+        <main className="flex-grow pt-[var(--navbar-height, 64px)]">
           {children}
         </main>
         <Footer />
 
-        {/* Floating WhatsApp Icon */}
-        {/* Placed outside main/footer but within body to be fixed relative to viewport */}
-        <a
-          href={whatsappLink}
-          target="_blank" // Open in a new tab
-          rel="noopener noreferrer" // Security best practice for target="_blank"
-          className="fixed bottom-8 right-8 z-[999] bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-600 transition-colors flex items-center justify-center size-14" // TailWind classes for position, styling, size, and hover
-          aria-label="Chat with us on WhatsApp" // Accessibility for screen readers
-        >
-          {/* Use o componente importado do react-icons */}
-          <FaWhatsapp size={28} /> {/* Ajuste o size conforme necessário */}
-        </a>
-
+        {/* Floating WhatsApp Icon (mantenha se adicionou) */}
+         <a
+           href={whatsappLink}
+           target="_blank"
+           rel="noopener noreferrer"
+           className="fixed bottom-8 right-8 z-[999] bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-600 transition-colors flex items-center justify-center size-14"
+           aria-label="Chat with us on WhatsApp"
+         >
+           <FaWhatsapp size={28} />
+         </a>
       </body>
     </html>
   );

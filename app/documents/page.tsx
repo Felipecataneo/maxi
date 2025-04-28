@@ -4,7 +4,7 @@ import { Search, Folder, FileText, Star, MoreVertical, ArrowDown, ArrowUpDown } 
 
 export default function DocumentsPage() {
   return (
-    <div className="bg-section-background min-h-screen py-16 md:py-24"> {/* Use section background variable and consistent padding */}
+    <div className="bg-section-background min-h-screen py-20 md:py-28"> {/* Use section background variable and consistent padding */}
       <div className="container mx-auto px-4 max-w-5xl"> {/* Increased max-width slightly for table */}
 
         {/* Page Title */}

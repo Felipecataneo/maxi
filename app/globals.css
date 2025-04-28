@@ -7,11 +7,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  /* Removed font-sans and font-mono assignments if using a different font setup */
-  /* Keeping them if you still want to use them via Tailwind theme */
-  --font-sans: var(--font-geist-sans); /* Or specify your main sans font */
-  --font-mono: var(--font-geist-mono); /* Or specify your mono font */
-  --font-serif: var(--font-georgia); /* Add a serif variable if needed, or apply directly below */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-georgia);
 
 
   --color-sidebar-ring: var(--sidebar-ring);
@@ -48,14 +46,14 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  /* Add a variable for the light background used in sections */
-  /* Use oklch(0.968 0.007 247.896) from muted */
   --color-section-background: var(--muted);
-  --color-accent-blue: oklch(0.55 0.15 260); /* Example accent blue */
+  --color-accent-blue: oklch(0.55 0.15 260);
+
+  --navbar-height: 64px; /* 4rem (matches h-16) */
 }
 
 :root {
-  /* Keep existing color variables */
+   /* Keep existing color variables */
   --radius: 0.625rem;
   --background: oklch(1 0 0); /* White */
   --foreground: oklch(0.129 0.042 264.695); /* Very dark grey */
@@ -89,11 +87,8 @@
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
 
-  --section-background: var(--muted); /* Use the light grey variable */
-  --accent-blue: oklch(0.55 0.15 260); /* Example accent blue */
-
-  /* Define the navbar height CSS variable here */
-  --navbar-height: 64px; /* 4rem (matches h-16) */
+  --section-background: var(--muted);
+  --accent-blue: oklch(0.55 0.15 260);
 }
 
 .dark {
@@ -130,8 +125,8 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
 
-  --section-background: var(--secondary); /* Use a different dark grey variable for sections in dark mode */
-  --accent-blue: oklch(0.75 0.15 260); /* Adjust accent blue for dark mode */
+  --section-background: var(--secondary);
+  --accent-blue: oklch(0.75 0.15 260);
 }
 
 @layer base {
@@ -139,24 +134,14 @@
     @apply border-border outline-ring/50;
   }
   body {
-    /* Set a default background color, sections can override */
-    @apply bg-background text-foreground font-sans; /* Ensure font-sans is applied */
+    @apply bg-background text-foreground font-sans;
   }
 
-  /* Apply serif font to main headings */
-  h1, h2, h3 {
-    @apply font-serif; /* Apply the serif font */
-  }
+  /* Remova esta regra: */
+  /* h1, h2, h3 {
+    @apply font-serif;
+  } */
 }
-
-/* Optional: Add a font-serif class if needed */
-/*
-@layer utilities {
-  .font-serif {
-    font-family: var(--font-georgia, Georgia, serif); // Use variable if defined, fallback to Georgia
-  }
-}
-*/
 
 /* Custom utility class for section background */
 @layer utilities {

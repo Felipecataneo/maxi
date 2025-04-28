@@ -28,11 +28,11 @@ export default async function ResearchDetailPage({ params }: { params: Promise<{
 
   return (
     <div className="bg-section-background"> {/* Use section background variable */}
-        <div className="container mx-auto px-4 py-16 md:py-24"> {/* Add padding to the container */}
+        <div className="container mx-auto px-4 py-20 md:py-28"> {/* Add padding to the container */}
             <div className="text-center mb-12 animate-fade-in"> {/* Add animation */}
                 {/* Main Section Title - consistent with homepage */}
                 {/* Apply font-serif from base layer, just need text color and size */}
-                <h1 className="text-3xl md:text-4xl text-gray-900">PESQUISA E DESENVOLVIMENTO</h1>
+                <h1 className="text-3xl md:text-4xl text-gray-900 font-heading">PESQUISA E DESENVOLVIMENTO</h1>
             </div>
             {/* Render the reusable content section with the found item data */}
             {/* Add animation delay to the content section */}

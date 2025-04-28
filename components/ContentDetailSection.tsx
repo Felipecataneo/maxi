@@ -20,7 +20,7 @@ export default function ContentDetailSection({ itemData }: ContentDetailSectionP
 
 
   return (
-    <section className="py-0"> {/* Removed section padding as it's added in the parent pages */}
+    <section className="py-5"> {/* Removed section padding as it's added in the parent pages */}
       <div className="container mx-auto px-4 max-w-4xl"> {/* Added max-w-4xl */}
 
         {/* Apply font-serif from base layer, just need text color and size */}
