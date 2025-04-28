@@ -139,6 +139,9 @@
   body {
     @apply bg-background text-foreground font-sans;
   }
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 /* Custom utility class for section background */
