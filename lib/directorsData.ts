@@ -31,4 +31,18 @@ export type Director = {
       photoUrl: '/felipe.jpg', // Example path
       linkedin: 'https://linkedin.com/in/anacosta'
     },
+    {
+      name: 'Ana',
+      role: 'Diretora de P&D',
+      degree: 'Doutora em Física - UNICAMP',
+      photoUrl: '/felipe.jpg', // Example path
+      linkedin: 'https://linkedin.com/in/anacosta'
+    },
+    {
+      name: 'Costa',
+      role: 'Diretora de P&D',
+      degree: 'Doutora em Física - UNICAMP',
+      photoUrl: '/felipe.jpg', // Example path
+      linkedin: 'https://linkedin.com/in/anacosta'
+    },
   ];
