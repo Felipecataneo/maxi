@@ -1,3 +1,4 @@
+// components/ui/carousel.tsx
 "use client"
 
 import * as React from "react"
@@ -28,6 +29,8 @@ type CarouselContextProps = {
   scrollNext: () => void
   canScrollPrev: boolean
   canScrollNext: boolean
+  selectedIndex: number // Added
+  scrollSnaps: number[] // Added
 } & CarouselProps
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null)
@@ -60,20 +63,27 @@ function Carousel({
   )
   const [canScrollPrev, setCanScrollPrev] = React.useState(false)
   const [canScrollNext, setCanScrollNext] = React.useState(false)
+  const [selectedIndex, setSelectedIndex] = React.useState(0) // Added
+  const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([]) // Added
 
+
+  // Updated onSelect to track selected index and scroll snaps
   const onSelect = React.useCallback((api: CarouselApi) => {
-    if (!api) return
-    setCanScrollPrev(api.canScrollPrev())
-    setCanScrollNext(api.canScrollNext())
-  }, [])
+    if (!api) return;
+    setCanScrollPrev(api.canScrollPrev());
+    setCanScrollNext(api.canScrollNext());
+    setSelectedIndex(api.selectedScrollSnap()); // Track selected index
+    setScrollSnaps(api.scrollSnapList()); // Track total snaps
+  }, []);
+
 
   const scrollPrev = React.useCallback(() => {
-    api?.scrollPrev()
-  }, [api])
+    api?.scrollPrev();
+  }, [api]);
 
   const scrollNext = React.useCallback(() => {
-    api?.scrollNext()
-  }, [api])
+    api?.scrollNext();
+  }, [api]);
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -116,6 +126,8 @@ function Carousel({
         scrollNext,
         canScrollPrev,
         canScrollNext,
+        selectedIndex, // Exposed
+        scrollSnaps, // Exposed
       }}
     >
       <div
@@ -238,4 +250,6 @@ export {
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
+  // Export useCarousel to be used by the dots component
+  useCarousel,
 }

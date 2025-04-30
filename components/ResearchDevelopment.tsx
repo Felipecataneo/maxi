@@ -1,19 +1,20 @@
 // app/components/ResearchDevelopment.tsx
-"use client"; // Este componente usa hooks (useMediaQuery)
+"use client"; // Este componente usa hooks (useMediaQuery, e indiretamente useCarousel via CarouselDots)
 
 import Image from "next/image"; // Mantenha se usar Image em outro lugar
 import Link from "next/link";   // Importe Link aqui
 import { researchItems } from "@/lib/researchData"; // Importe seus dados de pesquisa
 import SectionCard from "./SectionCard"; // Importe a componente SectionCard refatorada
 import useMediaQuery from "@/hooks/useMediaQuery"; // Importe o hook useMediaQuery
+import CarouselDots from "./CarouselDots"; // Import the new component for dots
 
 // Importe as componentes do Shadcn Carousel (DO SEU ARQUIVO MODIFICADO)
 import {
   Carousel,
   CarouselContent,
-  CarouselItem,
   // CarouselPrevious, // Opcional: botões de navegação
   // CarouselNext,     // Opcional: botões de navegação
+  CarouselItem, // Import CarouselItem
 } from "@/components/ui/carousel"; // AJUSTE O CAMINHO CONFORME O SEU PROJETO
 
 // Defina a query para detectar o breakpoint desktop (md: 768px)
@@ -27,7 +28,8 @@ export default function ResearchDevelopment() {
     <section id="research-development" className="bg-section-background py-16 md:py-24">
       <div className="container mx-auto px-4"> {/* Container principal com padding horizontal padrão */}
         <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground">PESQUISA E DESENVOLVIMENTO</h2>
+          {/* Apply font-heading for the title */}
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground">PESQUISA E DESENVOLVIMENTO</h2>
         </div>
 
         {/* Renderização condicional: Grid no Desktop, Carrossel no mobile */}
@@ -51,9 +53,11 @@ export default function ResearchDevelopment() {
           // --- Carousel Layout (Mobile) ---
           // Este div apenas adiciona padding horizontal nas bordas do carrossel.
           // O autoplay é controlado DENTRO da componente Carousel do Shadcn.
+          // A classe "-mx-4" aqui compensa o "px-4" do container pai, estendendo o carrossel até as bordas do viewport,
+          // e o "pl-6" em CarouselItem adiciona o padding entre os itens e no início.
           <div className="px-4 -mx-4 animate-fade-in delay-100"> {/* Ajuste de padding/margin para alinhar com o container principal */}
             <Carousel
-              opts={{
+              opts={{ // Use 'opts' prop
                 align: "start", // Alinha os itens no início do carrossel
                 // loop: true, // Opcional: para carrossel infinito
               }}
@@ -80,13 +84,20 @@ export default function ResearchDevelopment() {
                 ))}
               </CarouselContent>
               {/* Botões de navegação (Opcional, descomente se quiser usar) */}
+              {/* We are adding manual dots, so built-in arrows are less crucial here */}
               {/* <CarouselPrevious /> */}
               {/* <CarouselNext /> */}
+
+              {/* RENDERIZA OS PONTOS DO CARROSSEL AQUI DENTRO DO COMPONENTE CAROUSEL */}
+              {/* Ele já está no bloco !isDesktop acima, então não precisa verificar !isDesktop novamente aqui */}
+              <CarouselDots />
+
             </Carousel>
           </div>
         )}
         {/* ------------------------------------------------------ */}
 
+        {/* REMOVED: {!isDesktop && <CarouselDots />} */}
       </div>
     </section>
   );
